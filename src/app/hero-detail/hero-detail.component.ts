@@ -10,6 +10,8 @@ import {Location} from '@angular/common'
 })
 export class HeroDetailComponent implements OnInit {
 
+  selectedHero : Hero;
+
  // @Input() selectedHero: Hero;
   constructor(
     private heroService :HeroService,
@@ -19,7 +21,17 @@ export class HeroDetailComponent implements OnInit {
 
     getHeroDetail(){
 
+      const id = + this.activatedRoute.snapshot.paramMap.get('id');
+      console.log(this.activatedRoute.snapshot);
+      this.heroService.getHeroById(id)
+      .subscribe(result => this.selectedHero = result );
+
     }
+
+    goback(){
+      this.location.back();
+    }
+
   ngOnInit() {
     this.getHeroDetail()
   }

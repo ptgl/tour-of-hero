@@ -19,6 +19,10 @@ export class HeroService {
     return of(HEROES);
   }
 
+  getHeroById(id: number) : Observable<Hero>{
+    this.messageService.addMsg(`find Hero id = ${id}`);
+    return of (HEROES.find(o=> o.id === id));
+  }
 
   constructor(public messageService : MessageService) { }
 }
