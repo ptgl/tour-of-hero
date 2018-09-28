@@ -25,6 +25,11 @@ export class HeroesComponent implements OnInit {
     
   }
 
+  getHeroFromHttp(){
+    this.heroService.getHeroDB()
+    .subscribe(data => this.heroes = data);
+  }
+
   onSelect(hero: Hero): void {
     this.selectedHero = hero;
   }
@@ -32,7 +37,8 @@ export class HeroesComponent implements OnInit {
 
   ngOnInit() {
     //this.getHero();
-    this.getHeroFromAPI();
+    this.getHeroFromHttp();
+    //this.getHeroFromAPI();
   }
 
 }
